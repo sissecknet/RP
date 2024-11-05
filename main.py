@@ -70,7 +70,8 @@ def loadchar():
 test = gentest()
 test.inventory.addinv('Scroll of magic stuff', 1)
 test.inventory.addinv('Scroll of magic stuff', 1)
-test.inventory.printinv()
+
+test.help()
 
 #test.help()
 #bimp = loadchar('bimp')

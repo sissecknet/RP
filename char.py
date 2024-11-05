@@ -27,10 +27,14 @@ class Char():
         
         #code block to generate help text
         dFuncs = {}
+        sFuncs = {}
         dFuncs['takeDamage(amount)'] = 'Character takes damage'
         dFuncs['healDamage(amount)'] = 'Character is healed'
         dFuncs['abilityMod(stat)'] = 'Get ability mod for given stat'
         dFuncs['show()'] = 'Show character info'
+        
+        sFuncs['.inv'] = 'Inventory submenu'
+        sFuncs['.money'] = 'Money submenu'
         
         #try and generate adaptive lw rw based on text
         lw = []
@@ -38,17 +42,26 @@ class Char():
         for i in dFuncs:
             lw.append(len(i))
             rw.append(len(dFuncs[i]))
-
-        leftWidth = max(lw)
-        rightWidth = max(rw)   
-
+        
+        for i in sFuncs:
+            lw.append(len(i))
+            rw.append(len(sFuncs[i]))
+            
+        leftWidth = max(lw)+5
+        rightWidth = max(rw)
 
         
-        print('functions in money'.center(leftWidth + rightWidth, '-'))
+        
+        print('functions in character'.center(leftWidth + rightWidth, '-'))
         for i in dFuncs:
             lw = leftWidth
-            print(i.ljust(lw, '.') + dFuncs[i].rjust(rightWidth))    
-    
+            print(i.ljust(lw, '-'), dFuncs[i].rjust(rightWidth,'-'))    
+        print()
+        for i in sFuncs:
+            lw = leftWidth
+            print(i.ljust(lw, '-'), sFuncs[i].rjust(rightWidth,'-'))    
+            
+            
     def takeDamage(self, amountDamage):
         
         if amountDamage < 0:
