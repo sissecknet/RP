@@ -13,6 +13,56 @@ filename=path +'\\shelve.out'
 #Defining the types and order of stats now ensures it is always the same
 statName = ['Str','Dex','Con','Int','Wis','Cha']
 
+#Help function
+def help():
+        #trying to make a help function, but adjusting left rightWidth
+        #is not working like i want
+        
+        
+        #code block to generate help text
+        hTitle = 'Help info for DnD py'
+        
+        dFuncs = {}
+        sFuncs = {}
+        dFuncs['var = gentest()'] = 'generate a test character'
+        dFuncs['var = genchar()'] = 'Generate new character'
+        dFuncs['savechar(Var)'] = 'Save character to file'
+        dFuncs['var = loadchar()'] = 'Load character into var'
+        
+        sFuncs['.name'] = 'Name of character'
+        sFuncs['.HP'] = 'Health'
+        sFuncs['.HPmax'] = 'Max health'
+        sFuncs['.Str'] = 'Strength stat, works for other stats also'
+        sFuncs['.Class'] = 'Class of character'
+        sFuncs['.Level'] = 'Level of character'
+        
+        sFuncs['.inv'] = 'Inventory submenu'
+        sFuncs['.money'] = 'Money submenu'
+        
+        #try and generate adaptive lw rw based on text
+        lw = []
+        rw = []
+        for i in dFuncs:
+            lw.append(len(i))
+            rw.append(len(dFuncs[i]))
+        
+        for i in sFuncs:
+            lw.append(len(i))
+            rw.append(len(sFuncs[i]))
+            
+        leftWidth = max(lw)+5
+        rightWidth = max(rw)
+        
+        print(hTitle.center(leftWidth + rightWidth, '-'))
+        for i in dFuncs:
+            lw = leftWidth
+            print(i.ljust(lw, '-'), dFuncs[i].rjust(rightWidth,'-'))    
+        print()
+        for i in sFuncs:
+            lw = leftWidth
+            print(i.ljust(lw, '-'), sFuncs[i].rjust(rightWidth,'-'))    
+      
+
 
 #generate a test character, function could be removed later on but great for quickly getting a character to test out features
 # character name, health, class and level are predefined and all stats are 8
@@ -57,7 +107,7 @@ def savechar(charVar):
     with open(filename, 'wb') as pickle_file:
         pickle.dump(charVar, pickle_file)
     
-
+#Function to load character
 def loadchar():
     filename = askopenfilename(
         initialdir = path,

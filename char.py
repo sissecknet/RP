@@ -116,13 +116,7 @@ class Char():
                 
         return mod
 
-    # Added for debugging
-    
-    
-    def depositItem(self):
-        print('*** Deposit ***')
-        print('Your containers are')
-        
+  
         
     def show(self):
         print('       Name:', self.name)
