@@ -70,20 +70,28 @@ def gentest():
     statblock = {}
     for i in statName:
         statblock[i] = 8
-    return Char('Bimp', 50, statblock, 'Warlock', 8)
+    return Char('Bimp', 50, statblock, {'Warlock':8})
 
 #Function for generating a character instead of having to type it in as a list of data
 def genchar():
     
+    combClass = {}
     statblock = {}
     print('Let us create a character')
     print()
     cName = input('What is the nick of the character? ')
     print()
-    cClass = input('And what might your class be? ')
-    print()
-    cLevel = int(input('What level are you? '))
-    print()
+    while True:
+        
+        cClass = input('What class would you like to add? ') or 0
+        if cClass == 0:
+            break
+        print()
+        cLevel = int(input('What level is this class? '))
+        print()
+        combClass[cClass] = int(cLevel)
+    
+    
     for i in statName:
         statblock[i] = int(input('What is your '+ i+ ' score? '))
     print()

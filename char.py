@@ -1,11 +1,12 @@
 # Account class
 from inventory import *
 from money import *
+from spell import *
 
 statName = ['Str','Dex','Con','Int','Wis','Cha']
 
 class Char():
-    def __init__(self, name, HP, stat, Class, Level):
+    def __init__(self, name, HP, stat, Class):
         self.inventory = Inv()
         self.name = name
         self.HP = int(HP)
@@ -17,8 +18,10 @@ class Char():
         self.Wis = int(stat['Wis'])
         self.Cha = int(stat['Cha'])
         self.Class = Class
-        self.Level = int(Level)
+        #update to calculate total leel
+        #self.Level = int(Level)
         self.money = Money(0)
+        self.spell = Spell(Class)
     
     def help(self):
         #trying to make a help function, but adjusting left rightWidth
