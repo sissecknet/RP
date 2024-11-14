@@ -7,7 +7,8 @@ statName = ['Str','Dex','Con','Int','Wis','Cha']
 
 class Char():
     def __init__(self, name, HP, stat, Class):
-        self.inventory = Inv()
+        
+        self.inv = Inv()
         self.name = name
         self.HP = int(HP)
         self.HPmax = int(HP)
@@ -122,8 +123,14 @@ class Char():
   
         
     def show(self):
-        print('       Name:', self.name)
-        print('       HP:', self.HP)
+        print('Name:', self.name)
+        print('HP:', self.HP)
+        print('     stat    mod')
+        for i in statName:
+            amod = self.abilityMod(i)
+            print(i, '= ',getattr(self, i),'    ',amod)
+            
+        
         print()
 
 

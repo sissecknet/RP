@@ -68,9 +68,11 @@ def help():
 # character name, health, class and level are predefined and all stats are 8
 def gentest():
     statblock = {}
-    for i in statName:
-        statblock[i] = 8
-    return Char('Bimp', 50, statblock, {'Warlock':8})
+    for c, i in enumerate(statName):
+        statblock[i] = 8 + c
+    res = Char('Bimp', 50, statblock, {'Warlock':8})
+    res.inv.add(Sword=1, Dagger=1, healthpotion=2)
+    return res
 
 #Function for generating a character instead of having to type it in as a list of data
 def genchar():
@@ -126,10 +128,9 @@ def loadchar():
     return loaded_data
     
 test = gentest()
-test.inventory.addinv('Scroll of magic stuff', 1)
-test.inventory.addinv('Scroll of magic stuff', 1)
+test.show()
 
-test.help()
+
 
 #test.help()
 #bimp = loadchar('bimp')
