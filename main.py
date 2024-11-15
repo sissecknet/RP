@@ -11,7 +11,9 @@ path = os.getcwd()
 filename=path +'\\shelve.out'
 
 #Defining the types and order of stats now ensures it is always the same
+
 statName = ['Str','Dex','Con','Int','Wis','Cha']
+
 
 #Help function
 def help():
