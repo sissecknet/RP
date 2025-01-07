@@ -73,7 +73,7 @@ def gentest():
     for c, i in enumerate(statName):
         statblock[i] = 8 + c
     res = Char('Bimp', 50, statblock, {'Warlock':8})
-    res.inv.add(Sword=1, Dagger=1, healthpotion=2)
+    res.inv.add(Sword=1, Dagger=1, Health_potion=2)
     return res
 
 #Function for generating a character instead of having to type it in as a list of data

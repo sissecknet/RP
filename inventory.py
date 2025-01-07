@@ -15,7 +15,7 @@ class Inv():
         dFuncs['rem(kwars)'] = 'remove items from inventory rem(sword=1)'
         dFuncs['show'] = 'show inventory'
         
-        print('functions in money'.center(leftWidth + rightWidth, '-'))
+        print('functions in inventory'.center(leftWidth + rightWidth, '-'))
         for i in dFuncs:
             lw = leftWidth - len(i)
             print(i.ljust(lw, '.') + dFuncs[i].rjust(rightWidth))    
