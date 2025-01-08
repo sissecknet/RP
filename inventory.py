@@ -21,36 +21,47 @@ class Inv():
             print(i.ljust(lw, '.') + dFuncs[i].rjust(rightWidth))    
     
     
-    def add(self, **kwargs):
+    def add(self, *args):
         
-        if not bool(kwargs):
-            i_type = input('What item did you find? ').capitalize()
+        if not bool(args):
+            i_type = input('What item did you find? ').title()
             i_num = int(input('How many did you find? '))
-            kwargs = {i_type:i_num}
+            itemAdd = {i_type:i_num}
             #Check if the item already exists in the bag, if so just add new number
-            
-        for i_type in kwargs:
-            i_cap = i_type.capitalize()
-            if i_cap in self.inv:
-                self.inv[i_cap] += kwargs[i_type]
-            else:
-                self.inv[i_cap] = kwargs[i_type]
-            
-    def rem(self, **kwargs):
-        if not bool(kwargs):
-            self.show()
-            i_type = input('What item would you like to remove? ').capitalize()
-            i_num = int(input('How many of the item to remove? '))
-            kwargs = {i_type:i_num}
+        else:
+            itemAdd = dict(args[0])
+            itemAdd = {k.title():v for k,v in itemAdd.items()}
         
-        for i_type in kwargs:
-            i_cap = i_type.capitalize()
+        
+        for i_type in itemAdd:
+            
+            i_cap = i_type.title()
             if i_cap in self.inv:
-                if self.inv[i_cap] < kwargs[i_type]:
+                self.inv[i_cap] += itemAdd[i_type]
+            else:
+                self.inv[i_cap] = itemAdd[i_type]
+            
+    def rem(self, *args):
+        if not bool(args):
+            self.show()
+            i_type = input('What item would you like to remove? ').title()
+            i_num = int(input('How many of the item to remove? '))
+            itemRem = {i_type:i_num}
+        else:
+            itemRem = dict(args[0])
+            itemRem = {k.title():v for k,v in itemRem.items()}
+        
+        
+        for i_type in itemRem:
+            
+            i_cap = i_type.title()
+            if i_cap in self.inv:
+                if self.inv[i_cap] < itemRem[i_type]:
                     print('Trying to use more than you have')
                 
                 else:
-                    self.inv[i_cap] -= kwargs[i_type]
+                    self.inv[i_cap] -= itemRem[i_type]
+                    print('You used ', i_cap)
                     if self.inv[i_cap] == 0:
                         #always nicec to know when you use your last of something
                         print('That was your last ' + i_cap)
