@@ -5,6 +5,10 @@ from spell import *
 
 statName = ['Str','Dex','Con','Int','Wis','Cha']
 
+#This class takes a predefined set of data or use the call from main.py
+#to create a new character. Level of character is summed from Class vars
+
+
 class Char():
     def __init__(self, name, HP, stat, Class):
         
@@ -19,10 +23,14 @@ class Char():
         self.Wis = int(stat['Wis'])
         self.Cha = int(stat['Cha'])
         self.Class = Class
+        lev = 0
+        for k in Class:
+            lev += int(Class[k])
+        
+        self.Level = lev
         #update to calculate total leel
-        #self.Level = int(Level)
         self.money = Money(0)
-        self.spell = Spell(Class)
+        #self.spell = Spell(Class)
     
     def help(self):
         #trying to make a help function, but adjusting left rightWidth
@@ -65,7 +73,9 @@ class Char():
             lw = leftWidth
             print(i.ljust(lw, '-'), sFuncs[i].rjust(rightWidth,'-'))    
             
-            
+    
+#function to remove hp when taking damage, or dead if needed    
+#Also warns when player goes down
     def takeDamage(self, amountDamage):
         
         if amountDamage < 0:
@@ -73,8 +83,13 @@ class Char():
             return None
 
         self.HP -= amountDamage
-        return self.HP
         
+        if self.HP <= 0:
+            self.HP = 0
+            print('You go down!')
+        return self.HP
+#Healing function, checks so healing is not done negative
+#warns of overhealing        
     def healDamage(self, amountHeal):
         if amountHeal < 0:
             print('You cannot heal a negative amount')
@@ -89,9 +104,9 @@ class Char():
             
         return self.HP
     
-    
+#function to return ability modifier according to dnd standard rules    
     def abilityMod(self, stat):
-    #function to return ability modifier
+    
         
         stat = stat.capitalize() #Capital to match data
         
@@ -121,9 +136,10 @@ class Char():
         return mod
 
   
-        
+#Function outputting relevant info about character        
     def show(self):
         print('Name:', self.name)
+        print('Classes:', self.Class)
         print('HP:', self.HP)
         print('     stat    mod')
         for i in statName:

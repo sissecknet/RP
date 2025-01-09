@@ -25,43 +25,6 @@ class Money():
             print(i.ljust(lw, '.') + dFuncs[i].rjust(rightWidth))
 
         
-        
-
-    def add(self):
-        
-        income = 0 #working var
-        #take user input for different coins
-        for count, i in enumerate(coinTypes):
-            
-            inAmount = int(input('Amount of ' + i + ' ') or 0)
-            while inAmount < 0:
-                print('Negative values not allowed, set to zero')
-                inAmount = int(input('Amount of ' + i + ' ') or 0)
-            
-            income += inAmount*(10**count) #calculate working war in cp
-            
-
-        self.amount += income #update money
-        
-
-
-    def rem(self):
-        #borderline identical to above
-        income = 0
-        for count, i in enumerate(coinTypes):
-            
-            inAmount = int(input('Amount of ' + i + ' ') or 0)
-            while inAmount < 0:
-                print('Negative values not allowed, set to zero')
-                inAmount = int(input('Amount of ' + i + ' ') or 0)
-            income += inAmount*(10**count)
-        if self.amount - income < 0:
-            print('Oy don\'t spend money you don\'t have')
-        
-        else:
-            self.amount -= income 
-    
-    
     def show(self):
         current = self.amount #get current amount
         
@@ -83,5 +46,46 @@ class Money():
             print('You have ', i, ' ', coinTypes[count])
         
     
+    
 
+    def add(self):
+        
+        income = 0 #working var
+        #take user input for different coins
+        for count, i in enumerate(coinTypes):
+            
+            inAmount = int(input('Amount of ' + i + ' ') or 0)
+            while inAmount < 0:
+                print('Negative values not allowed, set to zero')
+                inAmount = int(input('Amount of ' + i + ' ') or 0)
+            
+            income += inAmount*(10**count) #calculate working war in cp
+            
+
+        self.amount += income #update money
+        print("\n")
+        self.show()
+        
+
+
+    def rem(self):
+        #borderline identical to above
+        income = 0
+        for count, i in enumerate(coinTypes):
+            
+            inAmount = int(input('Amount of ' + i + ' ') or 0)
+            while inAmount < 0:
+                print('Negative values not allowed, set to zero')
+                inAmount = int(input('Amount of ' + i + ' ') or 0)
+            income += inAmount*(10**count)
+        if self.amount - income < 0:
+            print('Oy don\'t spend money you don\'t have')
+        
+        else:
+            self.amount -= income 
+        
+        print("\n")
+        self.show()
+    
+    
 

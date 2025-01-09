@@ -99,13 +99,14 @@ def genchar():
         cLevel = int(input('What level is this class? '))
         print()
         combClass[cClass] = int(cLevel)
+        print(combClass)
     
     
     for i in statName:
         statblock[i] = int(input('What is your '+ i+ ' score? '))
     print()
     HP = int(input('What is your HP? '))
-    return Char(cName, HP, statblock, cClass, cLevel)
+    return Char(cName, HP, statblock, combClass)
     
     
 
@@ -134,10 +135,11 @@ def loadchar():
         loaded_data = pickle.load(file)
     return loaded_data
     
-test = gentest()
-test.show()
-test.inv.show()
-
+lana = genchar()
+#lana = loadchar()
+#test = gentest()
+#test.show()
+#test.inv.show()
 
 #test.help()
 #bimp = loadchar('bimp')
