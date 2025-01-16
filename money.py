@@ -52,11 +52,17 @@ class Money():
         
         income = 0 #working var
         #take user input for different coins
+        
         for count, i in enumerate(coinTypes):
             
-            inAmount = int(input('Amount of ' + i + ' ') or 0)
+            try:
+                inAmount = int(input('Amount of ' + i + ' ') or 0)
+            except ValueError:
+                print('Sorry, you entered a non-int number, value set to 0')
+                inAmount = 0
+            
             while inAmount < 0:
-                print('Negative values not allowed, set to zero')
+                print('Negative values not allowed, please try again')
                 inAmount = int(input('Amount of ' + i + ' ') or 0)
             
             income += inAmount*(10**count) #calculate working war in cp

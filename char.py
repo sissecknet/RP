@@ -88,6 +88,7 @@ class Char():
             self.HP = 0
             print('You go down!')
         return self.HP
+
 #Healing function, checks so healing is not done negative
 #warns of overhealing        
     def healDamage(self, amountHeal):
