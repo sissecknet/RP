@@ -6,14 +6,12 @@ from tkinter.filedialog import asksaveasfilename
 
 #by defining file types, only relevant files are shown in the dialogs for loading and saving characters
 fTypes = (('character files ', '*.dnd'), ('character files ', '*.DND'))
-
 path = os.getcwd()
 filename=path +'\\shelve.out'
 
 #Defining the types and order of stats now ensures it is always the same
-
 statName = ['Str','Dex','Con','Int','Wis','Cha']
-approved_classes = ["Warlock", "Warrior", "Wizard", "Sorcere", "Druid", "Ranger", "Bard"]
+
 
 #Help function
 def help():
@@ -63,8 +61,6 @@ def help():
         for i in sFuncs:
             lw = leftWidth
             print(i.ljust(lw, '-'), sFuncs[i].rjust(rightWidth,'-'))    
-      
-
 
 #generate a test character, function could be removed later on but great for quickly getting a character to test out features
 # character name, health, class and level are predefined and all stats are 8
@@ -72,7 +68,7 @@ def gentest():
     statblock = {}
     for c, i in enumerate(statName):
         statblock[i] = 8 + c
-    res = Char('Bimp', 50, statblock, {'Warlock':8, 'caster':8})
+    res = Char('Bimp', 50, statblock, {'Warlock':8})
     itemAdd = {
             "Sword": 1,
             "Dagger": 1,
@@ -85,7 +81,6 @@ def gentest():
 def genchar():
     
     combClass = {}
-    combClass['caster'] = 0
     statblock = {}
     print('Let us create a character')
     print()
@@ -93,23 +88,14 @@ def genchar():
     print()
     while True:
         
-        
-        
         cClass = input('What class would you like to add? ') or 0
-        while cClass not in 
         if cClass == 0:
             break
         print()
         cLevel = int(input('What level is this class? '))
-        cast = input('Does this count as caster class? [Y]/[N] ')
-        while cast not in ["y", "Y", "n", "N"]:
-                cast = input('Sorry please use Y or N, is this a caster level? ')
-            
         print()
         combClass[cClass] = int(cLevel)
-        combClass['caster'] += int(cLevel)
         print(combClass)
-        
     
     
     for i in statName:
@@ -118,8 +104,6 @@ def genchar():
     HP = int(input('What is your HP? '))
     return Char(cName, HP, statblock, combClass)
     
-    
-
 #function with GUI to save character, requires input in function of what the character variable is
 def savechar(charVar):
     filename = asksaveasfilename(
@@ -144,12 +128,4 @@ def loadchar():
     with open(filename, 'rb') as file:
         loaded_data = pickle.load(file)
     return loaded_data
-    
-lana = genchar()
-#lana = loadchar()
-#test = gentest()
-#test.show()
-#test.inv.show()
 
-#test.help()
-#bimp = loadchar('bimp')

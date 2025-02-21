@@ -23,6 +23,8 @@ class Char():
         self.Wis = int(stat['Wis'])
         self.Cha = int(stat['Cha'])
         self.Class = Class
+        
+        #calculate the total level of character
         lev = 0
         for k in Class:
             lev += int(Class[k])
